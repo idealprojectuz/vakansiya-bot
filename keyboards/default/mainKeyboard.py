@@ -3,15 +3,7 @@ from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 mainKeyboard = ReplyKeyboardMarkup(
     keyboard=[
         [
-            KeyboardButton(text="Sherik Kerak"),
-            KeyboardButton(text="ish joy kerak"),
-        ],
-        [
-            KeyboardButton(text="Hodim Kerak"),
-            KeyboardButton(text="Ustoz kerak"),
-        ],
-        [
-            KeyboardButton(text="Shogird Kerak"),
+            KeyboardButton(text="Vakansiya qo'shish"),
         ],
     ],
     resize_keyboard=True

@@ -12,3 +12,4 @@ class Xodimdata(StatesGroup):
     kasb = State()
     maosh=State()
     additioninfo=State()
+    posting=State()

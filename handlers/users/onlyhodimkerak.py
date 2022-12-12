@@ -3,13 +3,16 @@ from states.hodimData import Xodimdata
 from aiogram.dispatcher import FSMContext
 from aiogram.types import Message, ReplyKeyboardRemove
 from loader import dp
+from keyboards.default.mainKeyboard import mainKeyboard
 from keyboards.default.checkkeyoard import checkkeyboard
 from creatorimg.image import createimg
-
+from data.config import ADMINS
+from keyboards.inline.adminpostingKeyboard import adminMenu
+from keyboards.default.additiondatas import additiondatas
 # idora nomini so'rash
-@dp.message_handler(text='Hodim Kerak')
+@dp.message_handler(text="Vakansiya qo'shish")
 async def for_hodim(message: types.Message):
-    await message.answer('Xodim topish uchun ariza berish \n\nHozir sizga birnecha savollar beriladi. \nHar biriga javob bering. \nOxirida agar hammasi to`g`ri bo`lsa, HA tugmasini bosing va arizangiz Adminga yuboriladi.')
+    await message.answer('vakansiya joylash uchun ariza berish \n\nHozir sizga birnecha savollar beriladi. \nHar biriga javob bering. \nOxirida agar hammasi to`g`ri bo`lsa, HA tugmasini bosing va arizangiz Adminga yuboriladi.')
     await message.answer('🎓 Idora nomi?', reply_markup=ReplyKeyboardRemove())
     await Xodimdata.companyName.set()
 
@@ -119,7 +122,7 @@ async def answer_maosh(message: types.Message, state: FSMContext):
             "maosh": maosh,
          }
     )
-    await message.answer("‼️ Qo`shimcha ma`lumotlar?")
+    await message.answer("‼️ Qo`shimcha ma`lumotlar?", reply_markup=additiondatas)
     await Xodimdata.next()
 
 @dp.message_handler(state=Xodimdata.additioninfo)
@@ -153,7 +156,10 @@ async def answer_addition(message: types.Message, state: FSMContext):
     text+=f"🕰 Murojaat vaqti: {murojatvaqti} \n"
     text+= f"🕰 Ish vaqti: {ishvaqti} \n"
     text+=f"💰 Maosh: {maosh} \n"
-    text+=f"‼️ Qo`shimcha: {qoshimchamalumot} \n\n"
+    if qoshimchamalumot=='Shart emas':
+        pass
+    else:
+        text+=f"‼️ Qo`shimcha: {qoshimchamalumot} \n\n"
     text+=f"<a href='https://t.me/ayti_jobs'>✅ Kanalga obuna bo’lish </a>"
 
     imageres=createimg(kasb,maosh,idora)
@@ -161,5 +167,33 @@ async def answer_addition(message: types.Message, state: FSMContext):
         with open('creatorimg/result.png', 'rb') as file:
             await message.answer_photo(photo=file.read(), caption=text)
             await message.answer("Ma'lumotlar to'g'rimi", reply_markup=checkkeyboard)
+            await Xodimdata.next()
+    await state.update_data(
+        {
+            "allinfo": text,
+        }
+    )
 
+
+
+@dp.message_handler(state=Xodimdata.posting)
+async def answer_addition(message: types.Message, state: FSMContext):
+    if message.text=='Ha':
+        await message.answer("Malumotlaringiz Yuborildi Biz uni ko'rib chiqib Kanalga joylaymiz")
+        await message.answer('Yana vakansiya yubormoqchimisiz unda quyidagi tugmani bosing', reply_markup=mainKeyboard)
+        for admin in ADMINS:
+            try:
+                data = await state.get_data()
+                text=data['allinfo']
+                with open('creatorimg/result.png', 'rb') as file:
+                    await dp.bot.send_photo(admin, photo=file.read(), caption=text, reply_markup=adminMenu)
+                    await state.finish()
+            except Exception as err:
+                logging.exception(err)
+        pass
+    elif message.text=="Yo'q":
+        await message.answer('Yana vakansiya yubormoqchimisiz unda quyidagi tugmani bosing', reply_markup=mainKeyboard)
+        await state.finish()
+    else:
+        await message.answer('Bunday buyruq yoq')
 

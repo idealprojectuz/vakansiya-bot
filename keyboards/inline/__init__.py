@@ -1,1 +1,1 @@
-from . import regKeybard
+from . import adminpostingKeyboard
