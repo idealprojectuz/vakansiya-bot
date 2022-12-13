@@ -158,8 +158,8 @@ async def answer_addition(message: types.Message, state: FSMContext):
     hashtaglar+=kasbi[0]
 
 
-    text+=f"{hashtaglar} \n\n"
-    text=f"<b>Kasb: {kasb.title()} </b> \n\n🏢 Idora: {idora} \n"
+    text=f"{hashtaglar} \n\n"
+    text+=f"<b>Kasb: {kasb.title()} </b> \n\n🏢 Idora: {idora} \n"
     text+=f"📚 Texnologiya: <b>{tech} </b>\n"
     text+=f"🇺🇿 Telegram: @{username}\n"
     text+=f"📞 Aloqa: {phone} \n"
