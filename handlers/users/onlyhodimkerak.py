@@ -146,8 +146,19 @@ async def answer_addition(message: types.Message, state: FSMContext):
     kasb=data.get('kasbi')
     qoshimchamalumot=data.get('aditioninfo')
 
-    text=f"<b>Xodim kerak: </b> \n\n🏢 Idora: {idora} \n"
-    text+=f"Kasb {kasb.title()} \n"
+    hashtags=[]
+    locationlist=location.split()
+    hashtags.append(locationlist[0])
+    texnologiya=tech.split()
+    hashtags.append(texnologiya)
+    kasbi=kasb.split()
+    hashtags.append(kasbi)
+    hashtags[0]=f"#{hashtags[0]}"
+    hashnatija=' #'.join(hashtags)
+
+
+
+    text=f"<b>Kasb: {kasb.title()} </b> \n\n🏢 Idora: {idora} \n"
     text+=f"📚 Texnologiya: <b>{tech} </b>\n"
     text+=f"🇺🇿 Telegram: @{username}\n"
     text+=f"📞 Aloqa: {phone} \n"
@@ -155,12 +166,13 @@ async def answer_addition(message: types.Message, state: FSMContext):
     text+= f"✍️ Mas'ul: {fullname} \n"
     text+=f"🕰 Murojaat vaqti: {murojatvaqti} \n"
     text+= f"🕰 Ish vaqti: {ishvaqti} \n"
-    text+=f"💰 Maosh: {maosh} \n"
+    text+=f"💰 Maosh: {maosh} \n\n"
     if qoshimchamalumot=='Shart emas':
         pass
     else:
         text+=f"‼️ Qo`shimcha: {qoshimchamalumot} \n\n"
     text+=f"<a href='https://t.me/ayti_jobs'>✅ Kanalga obuna bo’lish </a>"
+    text+=f"{hashnatija}"
 
     imageres=createimg(kasb.title(),maosh,idora)
     if imageres:
