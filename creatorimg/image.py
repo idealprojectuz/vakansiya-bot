@@ -14,7 +14,7 @@ def createimg(kasbnomi,kasbnarxi,kompaniya):
     draw = ImageDraw.Draw(mask)
     draw.ellipse((20,1,280,270), fill=255)
 
-    img1.paste(img2, (250, 480), mask)
+    img1.paste(img2, (210, 250), mask)
     # Call draw Method to add 2D graphics in an image
 
 
@@ -24,14 +24,14 @@ def createimg(kasbnomi,kasbnarxi,kompaniya):
     jobPrice = kasbnarxi
     companyName = kompaniya
 
-    jobNameFont = ImageFont.truetype('creatorimg/Neue.ttf', 100)
-    jobPriceFont = ImageFont.truetype('creatorimg/Neue.ttf', 115)
-    companyNameFont = ImageFont.truetype('creatorimg/Neue.ttf', 60)
+    jobNameFont = ImageFont.truetype('creatorimg/Poppins-Bold.ttf', 80)
+    jobPriceFont = ImageFont.truetype('creatorimg/Poppins-Bold.ttf', 120)
+    companyNameFont = ImageFont.truetype('creatorimg/Poppins-Bold.ttf', 50)
 
     # Add Text to an image
-    I1.text((600, 470), jobName, font=jobNameFont, fill =('white'))
-    I1.text((600, 650), f"{jobPrice}", font=jobPriceFont, fill =('springgreen'))
-    I1.text((300, 938), companyName, font=companyNameFont, fill =('white'))
+    I1.text((220, 610), jobName, font=jobNameFont, fill =('white'))
+    I1.text((220, 730), f"{jobPrice}", font=jobPriceFont, fill =('springgreen'))
+    I1.text((300, 932), companyName, font=companyNameFont, fill =('white'))
 
     # Display edited image
     # img1.show()
@@ -39,3 +39,4 @@ def createimg(kasbnomi,kasbnarxi,kompaniya):
     # Save the edited image
     img1.save("creatorimg/result.png", format='png')
     return True
+createimg(str('full stack dev').title(),'500$','idealproject.uz')

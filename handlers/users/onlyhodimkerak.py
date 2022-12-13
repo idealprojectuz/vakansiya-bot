@@ -147,7 +147,7 @@ async def answer_addition(message: types.Message, state: FSMContext):
     qoshimchamalumot=data.get('aditioninfo')
 
     text=f"<b>Xodim kerak: </b> \n\n🏢 Idora: {idora} \n"
-    text+=f"Kasb {kasb} \n"
+    text+=f"Kasb {kasb.title()} \n"
     text+=f"📚 Texnologiya: <b>{tech} </b>\n"
     text+=f"🇺🇿 Telegram: @{username}\n"
     text+=f"📞 Aloqa: {phone} \n"
@@ -162,7 +162,7 @@ async def answer_addition(message: types.Message, state: FSMContext):
         text+=f"‼️ Qo`shimcha: {qoshimchamalumot} \n\n"
     text+=f"<a href='https://t.me/ayti_jobs'>✅ Kanalga obuna bo’lish </a>"
 
-    imageres=createimg(kasb,maosh,idora)
+    imageres=createimg(kasb.title(),maosh,idora)
     if imageres:
         with open('creatorimg/result.png', 'rb') as file:
             await message.answer_photo(photo=file.read(), caption=text)
