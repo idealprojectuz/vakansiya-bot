@@ -146,15 +146,16 @@ async def answer_addition(message: types.Message, state: FSMContext):
     kasb=data.get('kasbi')
     qoshimchamalumot=data.get('aditioninfo')
 
-    hashtags=[]
     locationlist=location.split()
-    hashtags.append(locationlist[0])
     texnologiya=tech.split()
-    hashtags.append(texnologiya)
     kasbi=kasb.split()
-    hashtags.append(kasbi)
-    hashtags[0]=f"#{hashtags[0]}"
-    hashnatija=' #'.join(hashtags)
+    locationlist[0]=f" #{locationlist[0]} "
+    texnologiya[0]=f" #{texnologiya[0]} "
+    kasbi[0]=f" #{kasbi[0]} "
+
+    hashtaglar=locationlist[0]
+    hashtaglar+=" #".join(texnologiya)
+    hashtaglar+=kasbi[0]
 
 
 
@@ -171,8 +172,8 @@ async def answer_addition(message: types.Message, state: FSMContext):
         pass
     else:
         text+=f"‼️ Qo`shimcha: {qoshimchamalumot} \n\n"
-    text+=f"<a href='https://t.me/ayti_jobs'>✅ Kanalga obuna bo’lish </a>"
-    text+=f"{hashnatija}"
+    text+=f"<a href='https://t.me/ayti_jobs'>✅ Kanalga obuna bo’lish </a> \n"
+    text+=f"{hashtaglar}"
 
     imageres=createimg(kasb.title(),maosh,idora)
     if imageres:
