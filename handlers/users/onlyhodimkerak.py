@@ -158,7 +158,7 @@ async def answer_addition(message: types.Message, state: FSMContext):
     hashtaglar+=kasbi[0]
 
 
-
+    text+=f"{hashtaglar} \n\n"
     text=f"<b>Kasb: {kasb.title()} </b> \n\n🏢 Idora: {idora} \n"
     text+=f"📚 Texnologiya: <b>{tech} </b>\n"
     text+=f"🇺🇿 Telegram: @{username}\n"
@@ -173,7 +173,6 @@ async def answer_addition(message: types.Message, state: FSMContext):
     else:
         text+=f"‼️ Qo`shimcha: {qoshimchamalumot} \n\n"
     text+=f"<a href='https://t.me/ayti_jobs'>✅ Kanalga obuna bo’lish </a> \n"
-    text+=f"{hashtaglar}"
 
     imageres=createimg(kasb.title(),maosh,idora)
     if imageres:
