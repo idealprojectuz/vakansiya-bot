@@ -78,7 +78,7 @@ async def answer_name(message: types.Message, state: FSMContext):
             'username': message.from_user.username
          }
     )
-    await message.answer("🕰 <b> Murojaat qilish vaqti:</b>\n\n Qaysi vaqtda murojaat qilish mumkin? \nMasalan, 9:00 - 18:00")
+    await message.answer("🕰 <b> Murojaat qilish vaqti:</b>\n\n Qaysi vaqtda murojaat qilish mumkin? \nMasalan, 9:00 - 18:00", reply_markup=additiondatas)
     await Xodimdata.next()
 
 @dp.message_handler(state=Xodimdata.murojatvaqti)
@@ -89,7 +89,7 @@ async def answer_murojatvaqti(message: types.Message, state: FSMContext):
             "murojatvaqti": murojatvaqti,
          }
     )
-    await message.answer("🕰 Ish vaqtini kiriting?")
+    await message.answer("🕰 Ish vaqtini kiriting?", reply_markup=additiondatas)
     await Xodimdata.next()
 
 @dp.message_handler(state=Xodimdata.ishvaqti)
@@ -166,8 +166,14 @@ async def answer_addition(message: types.Message, state: FSMContext):
     text+=f"Aloqa: {phone} \n"
     text+= f"🌐 Hudud: {location} \n"
     text+= f"✍️ Mas'ul: {fullname} \n"
-    text+=f"🕰 Murojaat vaqti: {murojatvaqti} \n"
-    text+= f"🕰 Ish vaqti: {ishvaqti} \n"
+    if murojatvaqti=='Shart emas':
+        pass
+    else:
+        text+=f"🕰 Murojaat vaqti: {murojatvaqti} \n"
+    if ishvaqti=='Shart emas':
+        pass
+    else:
+        text+= f"🕰 Ish vaqti: {ishvaqti} \n"
     text+=f"💰 Maosh: {maosh} \n\n"
     if qoshimchamalumot=='Shart emas':
         pass
