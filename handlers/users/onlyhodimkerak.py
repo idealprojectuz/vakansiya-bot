@@ -161,10 +161,12 @@ async def answer_addition(message: types.Message, state: FSMContext):
     text=f"{hashtaglar} \n\n"
     text+=f"<b>Kasb: {kasb.title()} </b> \n\n🏢 Idora: {idora} \n"
     text+=f"📚 Texnologiya: <b>{tech} </b>\n"
-    for admin in ADMINS:
+    adminlist=[1167233264,1174153911,913047674]
+    
+    for admin in adminlist:
             try:
-                userid=str(message.from_user.id)
-                if message.from_user.id==str(admin):
+                userid=int(message.from_user.id)
+                if message.from_user.id==int(admin):
                     break
                     pass
                 else:
