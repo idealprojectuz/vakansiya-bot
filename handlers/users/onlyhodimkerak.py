@@ -100,7 +100,7 @@ async def answer_ishvaqti(message: types.Message, state: FSMContext):
             "ishvaqti": ishvaqti,
          }
     )
-    await message.answer("Kasb nomini kiriting?")
+    await message.answer("Kasb nomini kiriting?", reply_markup=ReplyKeyboardRemove())
     await Xodimdata.next()
 
 @dp.message_handler(state=Xodimdata.kasb)
