@@ -163,12 +163,16 @@ async def answer_addition(message: types.Message, state: FSMContext):
     text+=f"📚 Texnologiya: <b>{tech} </b>\n"
     for admin in ADMINS:
             try:
-                if message.from_user.id==int(admin):
+                userid=str(message.from_user.id)
+                if message.from_user.id==str(admin):
+                    break
                     pass
                 else:
-                    text+=f"🇺🇿 Telegram: @{username}\n"
+                    tele=f"🇺🇿 Telegram: @{username}\n"
+                    break
             except Exception as err:
                 logging.exception(err)
+    text+=tele
     text+=f"📞 Aloqa: {phone} \n"
     text+= f"🌐 Hudud: {location} \n"
     text+= f"✍️ Mas'ul: {fullname} \n"
