@@ -161,7 +161,14 @@ async def answer_addition(message: types.Message, state: FSMContext):
     text=f"{hashtaglar} \n\n"
     text+=f"<b>Kasb: {kasb.title()} </b> \n\n🏢 Idora: {idora} \n"
     text+=f"📚 Texnologiya: <b>{tech} </b>\n"
-    text+=f"🇺🇿 Telegram: @{username}\n"
+    for admin in ADMINS:
+            try:
+                if message.from_user.id==int(admin):
+                    pass
+                else:
+                    text+=f"🇺🇿 Telegram: @{username}\n"
+            except Exception as err:
+                logging.exception(err)
     text+=f"📞 Aloqa: {phone} \n"
     text+= f"🌐 Hudud: {location} \n"
     text+= f"✍️ Mas'ul: {fullname} \n"
@@ -202,7 +209,6 @@ async def answer_addition(message: types.Message, state: FSMContext):
                     await state.finish()
             except Exception as err:
                 logging.exception(err)
-        pass
     elif message.text=="Yo'q":
         await message.answer('Yana vakansiya yubormoqchimisiz unda quyidagi tugmani bosing', reply_markup=mainKeyboard)
         await state.finish()
