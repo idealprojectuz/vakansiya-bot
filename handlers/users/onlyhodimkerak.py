@@ -38,7 +38,7 @@ async def answer_technology(message: types.Message, state: FSMContext):
         {"tech": technologyName}
     )
 
-    await message.answer("<b> 📞 Aloqa: </b>\n\nBog`lanish uchun raqamingizni kiriting? \nMasalan, +998 90 123 45 67")
+    await message.answer("<b> 📞 Aloqa: </b>\n\nBog`lanish uchun raqamingizni yoki telegram usernamini kiritishingiz mumkin ")
 
     # await PersonalData.email.set()
     await Xodimdata.next()
@@ -163,19 +163,7 @@ async def answer_addition(message: types.Message, state: FSMContext):
     text+=f"📚 Texnologiya: <b>{tech} </b>\n"
     adminlist=[1167233264,1174153911,913047674]
     
-    for admin in adminlist:
-            try:
-                userid=int(message.from_user.id)
-                if message.from_user.id==int(admin):
-                    break
-                    pass
-                else:
-                    tele=f"🇺🇿 Telegram: @{username}\n"
-                    break
-            except Exception as err:
-                logging.exception(err)
-    text+=tele
-    text+=f"📞 Aloqa: {phone} \n"
+    text+=f"Aloqa: {phone} \n"
     text+= f"🌐 Hudud: {location} \n"
     text+= f"✍️ Mas'ul: {fullname} \n"
     text+=f"🕰 Murojaat vaqti: {murojatvaqti} \n"
