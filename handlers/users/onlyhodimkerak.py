@@ -12,8 +12,8 @@ from keyboards.default.additiondatas import additiondatas
 # idora nomini so'rash
 @dp.message_handler(text="Vakansiya qo'shish")
 async def for_hodim(message: types.Message):
-    await message.answer('vakansiya joylash uchun ariza berish \n\nHozir sizga birnecha savollar beriladi. \nHar biriga javob bering. \nOxirida agar hammasi to`g`ri bo`lsa, HA tugmasini bosing va arizangiz Adminga yuboriladi.')
-    await message.answer('🎓 Idora nomi?', reply_markup=ReplyKeyboardRemove())
+    await message.answer('<b>Vakansiya joylash uchun ariza berish</b> \n\nHozir sizga birnecha savollar beriladi. \nHar biriga javob bering. \nOxirida agar hammasi to`g`ri bo`lsa, HA tugmasini bosing va arizangiz Adminga yuboriladi.')
+    await message.answer('<b>🎓 Idora nomi: </b>', reply_markup=ReplyKeyboardRemove())
     await Xodimdata.companyName.set()
 
 #kompaniya nomini so'rash
@@ -38,7 +38,7 @@ async def answer_technology(message: types.Message, state: FSMContext):
         {"tech": technologyName}
     )
 
-    await message.answer("<b> 📞 Aloqa: </b>\n\nBog`lanish uchun raqamingizni yoki telegram usernamini kiritishingiz mumkin ")
+    await message.answer(f"<b> 📞 Aloqa: </b>\n\n Bog`lanish uchun raqamingizni yoki <b>telegram usernamini: Masalan @{message.from_user.username}</b> kiritishingiz mumkin ")
 
     # await PersonalData.email.set()
     await Xodimdata.next()
@@ -52,7 +52,7 @@ async def answer_phonenum(message: types.Message, state: FSMContext):
         {"phone": phone}
     )
 
-    await message.answer("📚<b>🌐 Hudud: </b>\n\nQaysi hududdansiz? \nViloyat nomi, Toshkent shahar yoki Respublikani kiriting.")
+    await message.answer("<b> 🌐 Hudud: </b>\n\nQaysi hududdansiz? \nViloyat nomi, Toshkent shahar yoki Respublikani kiriting.")
 
     await Xodimdata.next()
 
@@ -65,7 +65,7 @@ async def answer_location(message: types.Message, state: FSMContext):
         {"location": locations}
     )
 
-    await message.answer("✍️Mas'ul ism sharifi?")
+    await message.answer("<b> ✍️ Mas'ul ism sharifi? </b>")
 
     await Xodimdata.next()
 #masul ism sharifi
@@ -100,7 +100,7 @@ async def answer_ishvaqti(message: types.Message, state: FSMContext):
             "ishvaqti": ishvaqti,
          }
     )
-    await message.answer("Kasb nomini kiriting?", reply_markup=ReplyKeyboardRemove())
+    await message.answer("<b>📝 Kasb nomini kiriting?</b>", reply_markup=ReplyKeyboardRemove())
     await Xodimdata.next()
 
 @dp.message_handler(state=Xodimdata.kasb)
@@ -111,7 +111,7 @@ async def answer_maosh(message: types.Message, state: FSMContext):
             "kasbi": kasb,
          }
     )
-    await message.answer("💰 Maoshni kiriting?")
+    await message.answer("<b>💰 Maoshni kiriting?</b>")
     await Xodimdata.next()
 
 @dp.message_handler(state=Xodimdata.maosh)
@@ -122,7 +122,7 @@ async def answer_maosh(message: types.Message, state: FSMContext):
             "maosh": maosh,
          }
     )
-    await message.answer("‼️ Qo`shimcha ma`lumotlar?", reply_markup=additiondatas)
+    await message.answer("<b>‼️ Qo`shimcha ma`lumotlar?</b>", reply_markup=additiondatas)
     await Xodimdata.next()
 
 @dp.message_handler(state=Xodimdata.additioninfo)
