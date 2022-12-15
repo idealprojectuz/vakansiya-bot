@@ -191,7 +191,7 @@ async def answer_addition(message: types.Message, state: FSMContext):
             await Xodimdata.next()
     await state.update_data(
         {
-            "allinfo": text,
+            "postdata": text,
         }
     )
 
@@ -205,9 +205,9 @@ async def answer_addition(message: types.Message, state: FSMContext):
         for admin in ADMINS:
             try:
                 data = await state.get_data()
-                posts=data['allinfo']
+                text=data['postdata']
                 with open('creatorimg/result.png', 'rb') as file:
-                    await dp.bot.send_photo(admin, photo=file.read(), caption=posts, reply_markup=adminMenu)
+                    await dp.bot.send_photo(admin, photo=file.read(), caption=text, reply_markup=adminMenu)
                     await state.finish()
             except Exception as err:
                 logging.exception(err)
