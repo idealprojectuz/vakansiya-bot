@@ -65,7 +65,7 @@ async def answer_location(message: types.Message, state: FSMContext):
         {"location": locations}
     )
 
-    await message.answer("<b> ✍️ Mas'ul ism sharifi? </b>")
+    await message.answer("<b> ✍️ Mas'ul ism sharifi: </b>")
 
     await Xodimdata.next()
 #masul ism sharifi
@@ -78,6 +78,7 @@ async def answer_name(message: types.Message, state: FSMContext):
             'username': message.from_user.username
          }
     )
+
     await message.answer("🕰 <b> Murojaat qilish vaqti:</b>\n\n Qaysi vaqtda murojaat qilish mumkin? \nMasalan, 9:00 - 18:00", reply_markup=additiondatas)
     await Xodimdata.next()
 
@@ -89,7 +90,7 @@ async def answer_murojatvaqti(message: types.Message, state: FSMContext):
             "murojatvaqti": murojatvaqti,
          }
     )
-    await message.answer("🕰 Ish vaqtini kiriting?", reply_markup=additiondatas)
+    await message.answer("<b>🕰 Ish vaqtini kiriting:</b>", reply_markup=additiondatas)
     await Xodimdata.next()
 
 @dp.message_handler(state=Xodimdata.ishvaqti)
@@ -100,7 +101,7 @@ async def answer_ishvaqti(message: types.Message, state: FSMContext):
             "ishvaqti": ishvaqti,
          }
     )
-    await message.answer("<b>📝 Kasb nomini kiriting?</b>", reply_markup=ReplyKeyboardRemove())
+    await message.answer("<b>📝 Kasb nomini kiriting:</b>", reply_markup=ReplyKeyboardRemove())
     await Xodimdata.next()
 
 @dp.message_handler(state=Xodimdata.kasb)
@@ -111,7 +112,7 @@ async def answer_maosh(message: types.Message, state: FSMContext):
             "kasbi": kasb,
          }
     )
-    await message.answer("<b>💰 Maoshni kiriting?</b>")
+    await message.answer("<b>💰 Maoshni kiriting:</b>")
     await Xodimdata.next()
 
 @dp.message_handler(state=Xodimdata.maosh)
@@ -122,7 +123,7 @@ async def answer_maosh(message: types.Message, state: FSMContext):
             "maosh": maosh,
          }
     )
-    await message.answer("<b>‼️ Qo`shimcha ma`lumotlar?</b>", reply_markup=additiondatas)
+    await message.answer("<b>‼️ Qo`shimcha ma`lumotlar:</b>", reply_markup=additiondatas)
     await Xodimdata.next()
 
 @dp.message_handler(state=Xodimdata.additioninfo)
@@ -159,11 +160,11 @@ async def answer_addition(message: types.Message, state: FSMContext):
 
 
     text=f"{hashtaglar} \n\n"
-    text+=f"<b>Kasb: {kasb.title()} </b> \n\n🏢 Idora: {idora} \n"
-    text+=f"📚 Texnologiya: <b>{tech} </b>\n"
+    text+=f"<b>{kasb.title()} </b> \n\n🏢 Idora: <b>{idora}</b> \n"
+    text+=f"📚 Texnologiya: {tech} \n"
     adminlist=[1167233264,1174153911,913047674]
     
-    text+=f"Aloqa: {phone} \n"
+    text+= f"📞 Aloqa:<b> {phone} </b> \n"
     text+= f"🌐 Hudud: {location} \n"
     text+= f"✍️ Mas'ul: {fullname} \n"
     if murojatvaqti=='Shart emas':
@@ -174,12 +175,12 @@ async def answer_addition(message: types.Message, state: FSMContext):
         pass
     else:
         text+= f"🕰 Ish vaqti: {ishvaqti} \n"
-    text+=f"💰 Maosh: {maosh} \n\n"
+    text+=f"💰 Maosh: <b> {maosh} </b> \n\n"
     if qoshimchamalumot=='Shart emas':
         pass
     else:
         text+=f"‼️ Qo`shimcha: {qoshimchamalumot} \n\n"
-    text+=f"<a href='https://t.me/ayti_jobs'>✅ Kanalga obuna bo’lish </a> \n"
+    text+=f"<b><a href='https://t.me/ayti_jobs'>✅ Kanalga obuna bo’lish </a></b> \n"
 
     imageres=createimg(kasb.title(),maosh,idora)
     if imageres:
