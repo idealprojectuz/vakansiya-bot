@@ -202,15 +202,13 @@ async def answer_addition(message: types.Message, state: FSMContext):
     if message.text=='Ha':
         await message.answer("Malumotlaringiz Yuborildi Biz uni ko'rib chiqib Kanalga joylaymiz")
         await message.answer('Yana vakansiya yubormoqchimisiz unda quyidagi tugmani bosing', reply_markup=mainKeyboard)
-        for admin in ADMINS:
-            try:
-                data = await state.get_data()
-                text=data['allinfo']
-                with open('creatorimg/result.png', 'rb') as file:
-                    await dp.bot.send_photo(admin, photo=file.read(), caption=text, reply_markup=adminMenu)
-                    await state.finish()
-            except Exception as err:
-                logging.exception(err)
+        adminlalisti=[1167233264,1174153911,913047674]
+        for admin in adminlalisti:
+            data = await state.get_data()
+            text=data['allinfo']
+            with open('creatorimg/result.png', 'rb') as file:
+                await dp.bot.send_photo(admin, photo=file.read(), caption=text, reply_markup=adminMenu)
+                await state.finish()
     elif message.text=="Yo'q":
         await message.answer('Yana vakansiya yubormoqchimisiz unda quyidagi tugmani bosing', reply_markup=mainKeyboard)
         await state.finish()
