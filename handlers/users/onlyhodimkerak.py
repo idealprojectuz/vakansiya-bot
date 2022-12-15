@@ -191,7 +191,7 @@ async def answer_addition(message: types.Message, state: FSMContext):
             await Xodimdata.next()
     await state.update_data(
         {
-            "allinfo": text,
+            "postdata": text,
         }
     )
 
@@ -205,9 +205,9 @@ async def answer_addition(message: types.Message, state: FSMContext):
         adminlalisti=[1167233264,1174153911,913047674]
         for admin in adminlalisti:
             data = await state.get_data()
-            text=data['allinfo']
+            posts=data['postdata']
             with open('creatorimg/result.png', 'rb') as file:
-                await dp.bot.send_photo(admin, photo=file.read(), caption=text, reply_markup=adminMenu)
+                await dp.bot.send_photo(admin, photo=file.read(), caption=posts, reply_markup=adminMenu)
                 await state.finish()
     elif message.text=="Yo'q":
         await message.answer('Yana vakansiya yubormoqchimisiz unda quyidagi tugmani bosing', reply_markup=mainKeyboard)
